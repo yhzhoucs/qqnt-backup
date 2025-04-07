@@ -6,7 +6,7 @@ An automation tool to backup QQNT chats in form of plain text.
 
 - Python 3.11 or higher
 - GNU make
-- unzip
+- unzip, curl, git
 
 # Instructions
 
@@ -26,7 +26,7 @@ make prepare # network is needed to download codes from github
 You should get your uid and encrypted database by yourself. Check
 [here](https://github.com/xCipHanD/qqnt_backup) for details.
 
-you can change `THREAD_NUM` in `Makefile` if necessary.
+You can change `THREAD_NUM` in `Makefile` if necessary.
 
 Finally, convert database into plain texts:
 
@@ -42,7 +42,7 @@ After the extraction, you may want to clean all cache files:
 make clean-cache
 ```
 
-you can also clean all files including output plain text files:
+You can also clean all files including output plain text files:
 
 ```shell
 make clean
