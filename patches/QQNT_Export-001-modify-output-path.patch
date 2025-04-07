@@ -1,0 +1,22 @@
+diff --git a/main.py b/main.py
+index ff18d47..48ec1c2 100644
+--- a/main.py
++++ b/main.py
+@@ -7,8 +7,8 @@ import c2c
+ import group
+ 
+ def output_path(db_path):
+-    c2c_path = db_path / ".." / ".." / "output" / "c2c"
+-    group_path = db_path / ".." / ".." / "output" / "group"
++    c2c_path = Path("./plaintext/c2c")
++    group_path = Path("./plaintext/group")
+ 
+     if not c2c_path.exists():
+         c2c_path.mkdir(parents=True)
+@@ -82,4 +82,4 @@ def main():
+ 
+ 
+ if __name__ == "__main__":
+-    main()
+\ No newline at end of file
++    main()

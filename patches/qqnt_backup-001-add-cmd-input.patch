@@ -1,0 +1,35 @@
+diff --git a/decrypt.py b/decrypt.py
+index 41dcca8..32bd146 100644
+--- a/decrypt.py
++++ b/decrypt.py
+@@ -1,14 +1,18 @@
+ import os, hashlib, time
+ from pysqlcipher3 import dbapi2 as sqlite
++import sys
+ 
+ # 数据库批量解密
+ 
++if len(sys.argv) < 3:
++    print('use this script as `python decrypt.py <qquid> <path/to/db>`')
++    exit(-1)
++
+ # 你的qquid
+-uid = "u_zioNZ*************KN5A"
++uid = sys.argv[1]
+ 
+ # 包含nt_msg等数据库的文件夹路径
+-path = "./nt_qq_e5a51********************833777a"
+-
++path = sys.argv[2]
+ 
+ def getKeys(uid, path):
+     keys = {}
+@@ -24,7 +28,7 @@ def getKeys(uid, path):
+ 
+ 
+ def removeHead(keys, path):
+-    newPath = os.path.join(".", "decrypt_" + str(int(time.time())))
++    newPath = os.path.join(".", "decrypt_dbs")
+     try:
+         os.mkdir(newPath)
+     except OSError as e:
