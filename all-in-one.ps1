@@ -8,7 +8,7 @@ param(
 )
 
 if ($JustCleanup) {
-    Remove-Item $pythonPath,$qqntBackupPath,$qqntExportPath -Force -Recurse
+    Remove-Item $pythonPath,$qqntBackupPath,$qqntExportPath -Force -Recurse -ErrorAction SilentlyContinue
     exit
 }
 
