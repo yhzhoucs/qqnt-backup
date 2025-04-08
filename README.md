@@ -34,8 +34,7 @@ make help       # Show help messages
 make prepare    # Requires network access to download code from GitHub
 ```
 
-You will need to obtain your own QQ UID and encrypted database files. See  
-[xCipHanD/qqnt_backup](https://github.com/xCipHanD/qqnt_backup) for instructions.
+You will need to obtain your own QQ UID and encrypted database files. See [xCipHanD/qqnt_backup](https://github.com/xCipHanD/qqnt_backup) for instructions.
 
 If necessary, you can adjust the `THREAD_NUM` variable in the `Makefile`.
 
