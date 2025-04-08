@@ -32,8 +32,7 @@ make help        # 查看帮助信息
 make prepare     # 从 GitHub 下载必要代码（需要联网）
 ```
 
-你需要自行获取你的 QQ UID 和加密数据库文件。具体方法请参考  
-[xCipHanD/qqnt_backup](https://github.com/xCipHanD/qqnt_backup)。
+你需要自行获取你的 QQ UID 和加密数据库文件。具体方法请参考 [xCipHanD/qqnt_backup](https://github.com/xCipHanD/qqnt_backup)。
 
 如有需要，你可以在 `Makefile` 中修改 `THREAD_NUM` 来调整线程数。
 
