@@ -1,3 +1,5 @@
+[中文说明](./README-CN.md)
+
 # QQNT Backup
 
 An automation tool to back up QQNT chats as plain text.
