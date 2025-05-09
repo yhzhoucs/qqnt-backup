@@ -1,2 +1,7 @@
 /plaintext
-/qq-nt-dbs
+/qqnt-db
+/.venv
+/QQNT_Export
+/qqnt_backup
+/deps
+/decrypt_dbs

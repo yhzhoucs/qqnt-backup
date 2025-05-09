@@ -1,8 +1,8 @@
 PYTHON       := python
 THREAD_NUM   := 8
 
-QQNT_BACKUP_URL  := https://github.com/xCipHanD/qqnt_backup/archive/main.zip
-QQNT_EXPORT_URL  := https://github.com/Tealina28/QQNT_Export/archive/refs/tags/1.5.1.zip
+QQNT_BACKUP_URL  := https://github.com/xCipHanD/qqnt_backup/archive/refs/heads/main.tar.gz
+QQNT_EXPORT_URL  := https://github.com/Tealina28/QQNT_Export/archive/refs/tags/1.5.1.tar.gz
 
 # Default target
 .DEFAULT_GOAL := help
@@ -13,7 +13,7 @@ define DL
 endef
 
 define UNZIP
-	unzip -q $(1) -d $(2)
+	mkdir -p $(2) && tar xf $(1) --strip-components 1 -C $(2)
 endef
 
 help:
@@ -29,30 +29,26 @@ check_inputs:
 		false; \
 	fi
 
-# Download zip files
-zips:
-	@mkdir -p zips
+# Download tarballs
+deps:
+	@mkdir -p deps
 
-zips/qqnt_backup-main.zip: zips
+deps/qqnt_backup-main.tar.gz: deps
 	@$(call DL, $(QQNT_BACKUP_URL), $@)
 
-zips/QQNT_Export-1.5.1.zip: zips
+deps/QQNT_Export-1.5.1.tar.gz: deps
 	@$(call DL, $(QQNT_EXPORT_URL), $@)
 
 # prepare code
-qqnt_backup: zips/qqnt_backup-main.zip
+qqnt_backup: deps/qqnt_backup-main.tar.gz
 	rm -rf qqnt_backup && mkdir qqnt_backup
 	$(call UNZIP, $<, qqnt_backup)
-	mv qqnt_backup/qqnt_backup-main/* qqnt_backup/
-	rmdir qqnt_backup/qqnt_backup-main
-	git apply --directory=qqnt_backup ./patches/qqnt_backup-001-add-cmd-input.patch
+	patch -p1 -d qqnt_backup < ./patches/qqnt_backup-001-add-cmd-input.patch
 
-QQNT_Export: zips/QQNT_Export-1.5.1.zip
+QQNT_Export: deps/QQNT_Export-1.5.1.tar.gz
 	rm -rf QQNT_Export && mkdir QQNT_Export
 	$(call UNZIP, $<, QQNT_Export)
-	mv QQNT_Export/QQNT_Export-1.5.1/* QQNT_Export/
-	rmdir QQNT_Export/QQNT_Export-1.5.1
-	git apply --directory=QQNT_Export ./patches/QQNT_Export-001-modify-output-path.patch
+	patch -p1 -d QQNT_Export < ./patches/QQNT_Export-001-modify-output-path.patch
 
 prepare: qqnt_backup QQNT_Export
 
@@ -64,6 +60,6 @@ clean: clean-cache
 	rm -rf plaintext
 
 clean-cache:
-	rm -rf decrypt_dbs qqnt_backup QQNT_Export zips
+	rm -rf decrypt_dbs qqnt_backup QQNT_Export deps
 
 .PHONY: prepare convert clean clean-cache check_inputs help

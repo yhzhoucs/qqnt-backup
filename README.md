@@ -10,7 +10,7 @@ An automation tool to back up QQNT chats as plain text.
 
 - Python 3.11 or higher  
 - GNU Make  
-- `unzip`, `curl`, `git`  
+- `tar`, `curl`, `patch`  
 
 ### Windows
 
@@ -24,6 +24,8 @@ An automation tool to back up QQNT chats as plain text.
 First, install the required Python dependencies:
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 

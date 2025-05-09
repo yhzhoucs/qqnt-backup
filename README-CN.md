@@ -8,7 +8,7 @@
 
 - Python 3.11 或更高版本
 - GNU Make
-- `unzip`、`curl`、`git` 命令工具
+- `tar`、`curl`、`patch` 命令工具
 
 ### Windows 系统
 
@@ -22,6 +22,8 @@
 首先，安装依赖：
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
