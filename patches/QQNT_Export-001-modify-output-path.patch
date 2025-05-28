@@ -1,22 +1,23 @@
-diff --git a/main.py b/main.py
-index ff18d47..48ec1c2 100644
---- a/main.py
-+++ b/main.py
-@@ -7,8 +7,8 @@ import c2c
- import group
+diff -urN a/main.py b/main.py
+--- a/main.py	2025-05-25 12:41:04.000000000 +0800
++++ b/main.py	2025-05-28 15:07:56.853874108 +0800
+@@ -37,8 +37,8 @@
  
- def output_path(db_path):
--    c2c_path = db_path / ".." / ".." / "output" / "c2c"
--    group_path = db_path / ".." / ".." / "output" / "group"
-+    c2c_path = Path("./plaintext/c2c")
-+    group_path = Path("./plaintext/group")
+ 
+ def output_path(path):
+-    c2c_path = path / "output" / "c2c"
+-    group_path = path / "output" / "group"
++    c2c_path = path / "c2c"
++    group_path = path / "group"
  
      if not c2c_path.exists():
          c2c_path.mkdir(parents=True)
-@@ -82,4 +82,4 @@ def main():
+@@ -65,7 +65,7 @@
+     db_path = Path(args.path)
  
+     if args.output_path is None:
+-        args.output_path = Path(db_path / "..")
++        args.output_path = Path(db_path / ".." / "output")
+     else:
+         args.output_path = Path(args.output_path)
  
- if __name__ == "__main__":
--    main()
-\ No newline at end of file
-+    main()

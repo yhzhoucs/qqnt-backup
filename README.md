@@ -8,14 +8,14 @@ An automation tool to back up QQNT chats as plain text.
 
 ### Linux
 
-- Python 3.11 or higher  
-- GNU Make  
-- `tar`, `curl`, `patch`  
+- Python 3.11 or higher
+- GNU Make
+- `tar`, `curl`, `patch`
 
 ### Windows
 
-- PowerShell  
-- Git  
+- PowerShell
+- Git
 
 ## Instructions
 
@@ -44,17 +44,13 @@ To convert the database into plain text:
 
 ```bash
 make convert UID=your-uid DBPATH=path/to/your/databases
+# use custom Python
+PYTHON=.venv/bin/python make convert UID=your-uid DBPATH=path/to/your/databases
 ```
 
 All converted chat logs will be saved in the `plaintext` directory.
 
-To clean up temporary cache files after conversion:
-
-```bash
-make clean-cache
-```
-
-To remove **all** generated files, including the plain text output:
+To clean up output files:
 
 ```bash
 make clean
@@ -107,5 +103,5 @@ You may also specify the number of threads for the conversion process:
 
 ## Acknowledgements
 
-- [xCipHanD/qqnt_backup](https://github.com/xCipHanD/qqnt_backup) — for the decryption tool  
+- [xCipHanD/qqnt_backup](https://github.com/xCipHanD/qqnt_backup) — for the decryption tool
 - [Tealina28/QQNT_Export](https://github.com/Tealina28/QQNT_Export.git) — for the extraction tool

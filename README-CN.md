@@ -42,17 +42,13 @@ make prepare     # 从 GitHub 下载必要代码（需要联网）
 
 ```bash
 make convert UID=你的UID DBPATH=你的数据库路径
+# 使用自定义的 Python 路径
+PYTHON=.venv/bin/python make convert UID=your-uid DBPATH=path/to/your/databases
 ```
 
 转换后的聊天记录将保存在 `plaintext` 目录下。
 
-完成后可使用以下命令清除缓存文件：
-
-```bash
-make clean-cache
-```
-
-如需清除包括输出在内的所有生成文件：
+清除输出的文件：
 
 ```bash
 make clean
