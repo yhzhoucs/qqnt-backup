@@ -1,4 +1,5 @@
-protobuf==6.31.0
+humanize
+protobuf==6.31.1
 SQLAlchemy
 tqdm
 rotki-pysqlcipher3

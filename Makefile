@@ -1,7 +1,9 @@
 PYTHON       ?= python
 
+QQNT_EXPORT_VERSION := 2.4.0
+
 QQNT_BACKUP_URL  := https://github.com/xCipHanD/qqnt_backup/archive/refs/heads/main.tar.gz
-QQNT_EXPORT_URL  := https://github.com/Tealina28/QQNT_Export/archive/refs/tags/v2.3.0.tar.gz
+QQNT_EXPORT_URL  := https://github.com/Tealina28/QQNT_Export/archive/refs/tags/v$(QQNT_EXPORT_VERSION).tar.gz
 
 # Default target
 .DEFAULT_GOAL := help
@@ -34,7 +36,7 @@ deps:
 deps/qqnt_backup-main.tar.gz: deps
 	@$(call DL, $(QQNT_BACKUP_URL), $@)
 
-deps/QQNT_Export-v2.3.0.tar.gz: deps
+deps/QQNT_Export-v$(QQNT_EXPORT_VERSION).tar.gz: deps
 	@$(call DL, $(QQNT_EXPORT_URL), $@)
 
 # prepare code
@@ -42,7 +44,7 @@ qqnt_backup: deps/qqnt_backup-main.tar.gz
 	$(call UNZIP, $<, qqnt_backup)
 	patch -p1 -d qqnt_backup < ./patches/qqnt_backup-001-add-cmd-input.patch
 
-QQNT_Export: deps/QQNT_Export-v2.3.0.tar.gz
+QQNT_Export: deps/QQNT_Export-v$(QQNT_EXPORT_VERSION).tar.gz
 	$(call UNZIP, $<, QQNT_Export)
 	patch -p1 -d QQNT_Export < ./patches/QQNT_Export-001-modify-output-path.patch
 
@@ -53,7 +55,7 @@ convert: check_inputs qqnt_backup QQNT_Export
 	$(PYTHON) ./qqnt_backup/decrypt.py $(UID) $(DBPATH)
 	$(PYTHON) ./QQNT_Export/main.py ./decrypt_dbs --output_path plaintext
 
-clean: clean
-	rm -rf output
+clean:
+	rm -rf plaintext
 
 .PHONY: prepare convert clean check_inputs help
